@@ -2,172 +2,225 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Capde Studs</title>
   <style>
-    /* Color palette */
+    /* Color palette based on your image */
     :root {
-      --gray1: #3e4647;
-      --gray2: #3c454d;
-      --gray3: #353838;
-      --gray4: #232b2a;
-      --gray5: #101313;
-      --accent: #00c2ff;
+      --dark1: #3e4647;
+      --dark2: #3a444d;
+      --dark3: #373a3b;
+      --dark4: #232a2a;
+      --dark5: #111414;
+      --accent-green: #00c851; /* Roblox-style green */
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Segoe UI", sans-serif;
     }
 
     body {
-      margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background-color: var(--gray5);
+      background-color: var(--dark5);
       color: white;
       scroll-behavior: smooth;
     }
 
     header {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      background-color: var(--gray3);
-      padding: 15px 30px;
-      z-index: 1000;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      box-shadow: 0 0 10px black;
-    }
-
-    header h1 {
-      margin: 0;
-      font-size: 1.5em;
-      color: var(--accent);
-    }
-
-    nav a {
-      color: white;
-      text-decoration: none;
-      margin-left: 20px;
-      font-weight: bold;
-      transition: color 0.3s;
-    }
-
-    nav a:hover {
-      color: var(--accent);
-    }
-
-    .hero {
+      position: relative;
       height: 100vh;
-      background: url('download.jpg') no-repeat center center/cover;
+      background: url('your-image.jpg') no-repeat center center/cover;
       display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
       text-align: center;
-      padding: 0 20px;
     }
 
-    .hero-text {
-      background-color: rgba(0, 0, 0, 0.5);
-      padding: 30px;
-      border-radius: 10px;
+    nav {
+      position: absolute;
+      top: 0;
+      width: 100%;
+      padding: 1em 2em;
+      background-color: rgba(17, 20, 20, 0.8);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
 
-    .hero h2 {
-      font-size: 3em;
-      margin: 0;
-      color: var(--accent);
+    nav h1 {
+      color: white;
+      font-size: 1.5rem;
     }
 
-    .hero p {
-      font-size: 1.2em;
-      margin-top: 10px;
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 2em;
+    }
+
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    nav ul li a:hover {
+      color: var(--accent-green);
+    }
+
+    header h2 {
+      font-size: 3rem;
+      color: white;
+      text-shadow: 0 0 15px black;
+    }
+
+    header p {
+      font-size: 1.2rem;
+      margin-top: 1rem;
+      color: #ccc;
     }
 
     section {
-      padding: 80px 30px;
+      padding: 4em 2em;
     }
 
-    #creations {
-      background-color: var(--gray4);
+    .creations {
+      background-color: var(--dark4);
     }
 
-    .card-grid {
+    .creations h2 {
+      text-align: center;
+      margin-bottom: 2em;
+      font-size: 2.5rem;
+    }
+
+    .games-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 30px;
+      gap: 2em;
     }
 
-    .card {
-      background-color: var(--gray3);
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
+    .game-card {
+      background-color: var(--dark3);
+      border-radius: 12px;
+      overflow: hidden;
+      position: relative;
+      cursor: pointer;
+      transition: transform 0.3s ease;
     }
 
-    .card h3 {
-      margin-top: 0;
-      color: var(--accent);
+    .game-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      display: block;
     }
 
-    #contact {
-      background-color: var(--gray2);
+    .game-button {
+      position: absolute;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%) translateY(100%);
+      background-color: var(--accent-green);
+      color: white;
+      border: none;
+      padding: 0.6em 1.2em;
+      border-radius: 5px;
+      opacity: 0;
+      transition: 0.3s ease;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .game-card:hover .game-button {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
+    }
+
+    .contact {
+      background-color: var(--dark2);
       text-align: center;
+      padding-bottom: 5em;
     }
 
-    #contact p {
-      margin: 5px 0;
+    .contact h2 {
+      margin-bottom: 1em;
+    }
+
+    .contact p {
+      color: #ccc;
+      font-size: 1rem;
     }
 
     footer {
-      background-color: var(--gray1);
       text-align: center;
-      padding: 15px;
-      font-size: 0.9em;
-      color: #bbb;
+      padding: 1em;
+      background-color: var(--dark1);
+      font-size: 0.9rem;
+      color: #aaa;
+    }
+
+    @media (max-width: 768px) {
+      nav ul {
+        gap: 1em;
+      }
+
+      header h2 {
+        font-size: 2rem;
+      }
+
+      .game-card img {
+        height: 150px;
+      }
     }
   </style>
 </head>
 <body>
 
-  <header>
+  <nav>
     <h1>Capde Studs</h1>
-    <nav>
-      <a href="#creations">Creations</a>
-      <a href="#contact">Contact</a>
-    </nav>
+    <ul>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#creations">Creations</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <header id="home">
+    <h2>We Build Roblox Experiences</h2>
+    <p>Game Development Studio • Est. 2025</p>
   </header>
 
-  <section class="hero">
-    <div class="hero-text">
-      <h2>We Build Worlds</h2>
-      <p>Capde Studs is a game dev group crafting fun, rich, and imaginative experiences.</p>
-    </div>
-  </section>
-
-  <section id="creations">
+  <section class="creations" id="creations">
     <h2>Our Creations</h2>
-    <div class="card-grid">
-      <div class="card">
-        <h3>Game One</h3>
-        <p>A thrilling action-platformer with pixel art.</p>
+    <div class="games-grid">
+      <!-- Game 1 -->
+      <div class="game-card">
+        <img src="your-game-image1.jpg" alt="Game 1">
+        <a href="https://www.roblox.com/games/123456789" class="game-button" target="_blank">Play</a>
       </div>
-      <div class="card">
-        <h3>Game Two</h3>
-        <p>A mysterious puzzle game set in a dreamscape.</p>
+
+      <!-- Game 2 -->
+      <div class="game-card">
+        <img src="your-game-image2.jpg" alt="Game 2">
+        <a href="https://www.roblox.com/games/987654321" class="game-button" target="_blank">Play</a>
       </div>
-      <div class="card">
-        <h3>Game Three</h3>
-        <p>A multiplayer arena built with love and chaos.</p>
-      </div>
+
+      <!-- Add more as needed -->
     </div>
   </section>
 
-  <section id="contact">
+  <section class="contact" id="contact">
     <h2>Contact Us</h2>
     <p>Email: capdestuds@example.com</p>
-    <p>Twitter: @capdestuds</p>
+    <p>Roblox: @CapdeStuds</p>
   </section>
 
   <footer>
-    &copy; 2025 Capde Studs. All rights reserved.
+    © 2025 Capde Studs. All rights reserved.
   </footer>
 
 </body>
