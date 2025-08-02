@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Capde Devs</title>
   <style>
     * {
@@ -14,7 +14,7 @@
 
     body {
       background-color: #1c1f20;
-      color: #fff;
+      color: #ccc; /* Changed from #fff to dark gray */
     }
 
     header {
@@ -33,7 +33,7 @@
     }
 
     nav a {
-      color: #fff;
+      color: #ccc;
       margin-left: 1.5rem;
       text-decoration: none;
       font-weight: bold;
@@ -114,12 +114,24 @@
       background-color: #111;
     }
 
-    .contact h2 {
-      margin-bottom: 1rem;
+    .contact p {
+      margin-bottom: 2rem;
+      font-size: 1.2rem;
     }
 
-    .contact p {
-      margin-bottom: 0.5rem;
+    .contact a.button {
+      display: inline-block;
+      padding: 1rem 2rem;
+      background-color: #00ff88;
+      color: #000;
+      text-decoration: none;
+      font-weight: bold;
+      border-radius: 5px;
+      transition: background-color 0.3s;
+    }
+
+    .contact a.button:hover {
+      background-color: #00cc6a;
     }
   </style>
 </head>
@@ -156,8 +168,8 @@
   </section>
 
   <section class="contact" id="contact">
-    <h2 href="contact.html">Contact Us</h2>
-    <p>Discord: llunixx_</p>
+    <p>Contact us for queries and for reporting bugs and ideas in our games</p>
+    <a href="contact.html" class="button">Go to Contact Page</a>
   </section>
 
 </body>
