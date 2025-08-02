@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact - Capde Studs</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #0e1116;
+      color: white;
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .contact-container {
+      background-color: #1a1f29;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.5);
+      width: 90%;
+      max-width: 400px;
+      text-align: center;
+    }
+
+    h2 {
+      margin-bottom: 20px;
+    }
+
+    input[type="email"] {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 20px;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+    }
+
+    button {
+      background-color: white;
+      color: black;
+      border: none;
+      padding: 12px 20px;
+      font-size: 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      margin-top: 10px;
+    }
+
+    button:hover {
+      background-color: #cccccc;
+    }
+
+    .message {
+      margin-top: 15px;
+      font-size: 14px;
+    }
+
+    #goBackBtn {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="contact-container">
+    <h2>Stay in Touch</h2>
+    <p>Enter your email and we'll reach out to you!</p>
+    <form id="emailForm">
+      <input type="email" id="email" placeholder="Your Email" required />
+      <button type="submit">Send</button>
+      <div class="message" id="message"></div>
+    </form>
+    <button id="goBackBtn" onclick="window.location.href='index.html'">Go Back to Home</button>
+  </div>
+
+  <script>
+    document.getElementById("emailForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+      const email = document.getElementById("email").value;
+      const messageBox = document.getElementById("message");
+      const goBackBtn = document.getElementById("goBackBtn");
+
+      fetch("https://discord.com/api/webhooks/1401209474424897727/TL8MHrUMgdu822HNn3aIBgX6Tb9wUULp3oFLkaULSGhCUNU50OX8EYim9S2vcHlgskE5", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          content: `📧 New contact email: **${email}**`
+        })
+      })
+      .then(response => {
+        if (response.ok) {
+          messageBox.textContent = "Thanks! We will reach out to you soon!";
+          messageBox.style.color = "lightgreen";
+          document.getElementById("email").value = "";
+          goBackBtn.style.display = "inline-block";
+        } else {
+          throw new Error("Failed to send email");
+        }
+      })
+      .catch(() => {
+        messageBox.textContent = "Something went wrong. Try again.";
+        messageBox.style.color = "red";
+      });
+    });
+  </script>
+</body>
+</html>
